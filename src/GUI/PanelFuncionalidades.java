@@ -3,6 +3,8 @@ package GUI;
 import javax.swing.JPanel;
 
 import GUI.PanelesOperaciones.AgregarAlumno;
+import GUI.PanelesOperaciones.ConsultarAlumno;
+import GUI.PanelesOperaciones.EliminarAlumno;
 import Lógica.Resolvedor;
 
 import javax.swing.JComboBox;
@@ -31,7 +33,8 @@ public class PanelFuncionalidades extends JPanel {
 		resolvedor = new Resolvedor();
 		operaciones = new JPanel[10];
 		operaciones[0] = new AgregarAlumno(resolvedor);
-		
+		operaciones[1] = new ConsultarAlumno(resolvedor);
+		operaciones[2] = new EliminarAlumno(resolvedor);
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
@@ -55,12 +58,8 @@ public class PanelFuncionalidades extends JPanel {
 				}
 				
 				int s =  comboBox.getSelectedIndex();
-				switch(s) {
-					case 0:
-						panelOperacion = new AgregarAlumno(resolvedor);
-						break;
-					
-				}
+				panelOperacion = operaciones[s];
+				
 				contenedorOperacion.add(panelOperacion);
 				contenedorOperacion.repaint();
 				contenedorOperacion.revalidate();

@@ -6,6 +6,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
 
@@ -34,16 +36,22 @@ public class AgregarAlumno extends JPanel {
 		JButton btnNewButton = new JButton("Guardar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int notaAnterior;
 				try {
-					r.agregarAlumno(LU.getText() , nota.getText());
+					notaAnterior = r.agregarAlumno(LU.getText() , nota.getText());
+					if (notaAnterior == -1) {
+						JOptionPane.showMessageDialog(null, "Nota agregada");
+					} else {
+						JOptionPane.showMessageDialog(null, "Nota actualizada , nota anterior : " + notaAnterior);
+					}
 				} catch (NumberFormatException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "La nota o el LU no es un número", "Dialog",
+					        JOptionPane.ERROR_MESSAGE);
 				} catch (InvalidGradeException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "La nota no es válida", "Dialog",
+					        JOptionPane.ERROR_MESSAGE);
 				}
-				JOptionPane.showMessageDialog(null, "Nota agregada");
+				
 			}
 		});
 		add(btnNewButton, BorderLayout.SOUTH);
