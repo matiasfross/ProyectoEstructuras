@@ -8,6 +8,12 @@ import TDAPar.Par;
 
 import java.util.Iterator;
 
+import javax.swing.DefaultListModel;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.AbstractTableModel;
+
+import Excepciones.EmptyListException;
 import Excepciones.InvalidGradeException;
 import Excepciones.InvalidPositionException;
 import TDADiccionario.DiccionarioDA;
@@ -83,7 +89,16 @@ public class Resolvedor {
 		return encontre;
 	}
 	
-	public Iterable<Par<Integer, Integer>> mostrarTodos(){
+	
+	public void mostrarTodos(DefaultListModel<String> modelo) {
+		Iterator<Par<Integer , Integer>> it = registroLista.iterator();
+		while(it.hasNext()) {
+			Par<Integer , Integer> p = it.next();
+			modelo.addElement(p.getFirst()+": "+p.getSecond());
+		}
+	}
+	
+	public Iterable<Par<Integer, Integer>> obtenerTodos(){
 		return registroLista;
 	}
 	

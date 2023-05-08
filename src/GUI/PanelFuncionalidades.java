@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import GUI.PanelesOperaciones.AgregarAlumno;
 import GUI.PanelesOperaciones.ConsultarAlumno;
 import GUI.PanelesOperaciones.EliminarAlumno;
+import GUI.PanelesOperaciones.MostrarTodos;
 import Lógica.Resolvedor;
 
 import javax.swing.JComboBox;
@@ -35,6 +36,7 @@ public class PanelFuncionalidades extends JPanel {
 		operaciones[0] = new AgregarAlumno(resolvedor);
 		operaciones[1] = new ConsultarAlumno(resolvedor);
 		operaciones[2] = new EliminarAlumno(resolvedor);
+		operaciones[3] = new MostrarTodos(resolvedor);
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
