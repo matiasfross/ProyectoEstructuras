@@ -94,10 +94,22 @@ public class Resolvedor {
 		Iterator<Par<Integer , Integer>> it = registroLista.iterator();
 		while(it.hasNext()) {
 			Par<Integer , Integer> p = it.next();
-			modelo.addElement(p.getFirst()+": "+p.getSecond());
+			modelo.addElement(p.getFirst()+": ");//+": "+p.getSecond());
+			System.out.println(modelo.getSize());
 		}
 	}
-	
+	public float obtenerPromedio() /*throws ArithmeticException*/{
+		int prom=0;
+		int contador=1;
+		Iterator<Par<Integer , Integer>> it = registroLista.iterator();
+		while(it.hasNext()) {
+			Par<Integer , Integer> p = it.next();
+			prom+=p.getSecond();
+			contador++;
+		}
+		/*if(contador==0) throw new ArithmeticException("Division por 0 (no hay alumnos agregados)");*/
+		return prom/contador;
+	}
 	public Iterable<Par<Integer, Integer>> obtenerTodos(){
 		return registroLista;
 	}

@@ -15,20 +15,22 @@ import Lógica.Resolvedor;
 public class MostrarTodos extends JPanel {
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public MostrarTodos(Resolvedor r) {
+		JPanel panel = new JPanel();
 		JList<String> lista = new JList<String>();
 		DefaultListModel<String> modelo = new DefaultListModel<String>();
-		r.mostrarTodos(modelo);
-		
+		r.mostrarTodos(modelo);		
 		lista.setModel(modelo);
-		JScrollPane scrollLista = new JScrollPane();
-		scrollLista.setBounds(20, 120, 220, 80);		
-		scrollLista.setViewportView(lista);		
-		add(scrollLista);
-		
-		JPanel panel = new JPanel();
+		lista.setVisibleRowCount(5);
+		JScrollPane scrollLista = new JScrollPane(lista);
+		scrollLista.setBounds(20, 120, 220, 80);										
 		add(panel, BorderLayout.CENTER);
-		panel.setLayout(new GridLayout(2, 2, 0, 0));
-		panel.add(scrollLista);
+		panel.setLayout(new GridLayout(2, 2, 0, 0));		
+		panel.add(scrollLista);				
 	}
 }
