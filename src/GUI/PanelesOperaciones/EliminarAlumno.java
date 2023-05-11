@@ -10,7 +10,12 @@ import Lógica.Resolvedor;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+/**
+ * Panel que contiene una etiqueta, una jaula de texto y un boton que le preguntan al usuario que alumno quiere eliminar
+ * y muestra 3 mensajes distintos segun lo que se ingrese en la jaula de texto
+ * @author valua
+ *
+ */
 public class EliminarAlumno extends JPanel {
 	private JTextField textField;
 

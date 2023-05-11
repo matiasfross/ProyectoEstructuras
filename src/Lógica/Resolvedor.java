@@ -18,6 +18,12 @@ import GUI.PanelesOperaciones.EliminarAlumno;
 import GUI.PanelesOperaciones.MostrarTodos;
 import GUI.PanelesOperaciones.calcularPromedio;
 import TDADiccionario.DiccionarioDA;
+/**
+ * Clase que recibe que funcionalidad se desea llevar a cabo y que resulve las operaciones logicas de las mismas
+ * tiene un atributo que lleva el registro de los alumnos
+ * @author valua
+ *
+ */
 public class Resolvedor {
 
 	
@@ -31,7 +37,11 @@ public class Resolvedor {
 		registroLista = new ListaDE<Par<Integer , Integer>>();
 		
 	}
-	
+	/**
+	 * Crea un panel de acuerdo a la funcion que se quiera utilizar
+	 * @param n referencia a la opcion elegida en la caja de opciones
+	 * @return retorna un panel que realiza la funcion solicitada
+	 */
 	public JPanel crearPanelFunción(int n) {
 		JPanel res = null;
 		switch(n) {
@@ -53,6 +63,14 @@ public class Resolvedor {
 		}
 		return res;
 	}
+	/**
+	 * Agrega un alumno al registro
+	 * @param LU numero de legajo que identifica al alumno
+	 * @param nota nota obtenida por el alumno
+	 * @return retorna -1 si no estaba en el registro, o la nota anterior si ya estaba registrado anteriormente
+	 * @throws InvalidGradeException  si la nota nota pasada por paramentro no es valida
+	 * @throws NumberFormatException si la nota pasada por parametro no es un numero
+	 */
 	public int agregarAlumno(String LU, String nota) throws InvalidGradeException , NumberFormatException{
 		int lu = toNum(LU);
 		int n = toNum(nota);
@@ -77,7 +95,12 @@ public class Resolvedor {
 		
 		return res;
 	}
-
+	/**
+	 * Metodo que recibe un LU y lo busca en el registro para retornar su respectiva nota
+	 * @param LU numero de legajo del alumno a a consultar
+	 * @return nota asociada al alumno con el LU pasado por parametro
+	 * @throws NumberFormatException si el LU pasado por parametro no representa un numero
+	 */
 	public int consultarNota(String LU)throws NumberFormatException {
 		int lu = toNum(LU);
 		Iterator<Par<Integer , Integer>> it = registroLista.iterator();
@@ -91,7 +114,12 @@ public class Resolvedor {
 		
 		return res;
 	}
-	
+	/**
+	 * Recibe un LU por parametro, lo busca en el registro y elimina al alumno registrado con ese LU
+	 * @param LU numero de legajo del alumno a eliminar
+	 * @return retorna verdadero si encontro al alumno asociado a LU en el registro, falso en caso contrario
+	 * @throws NumberFormatException si el LU pasado por parametro no representa a un numero
+	 */
 	public boolean eliminarNota(String LU)throws NumberFormatException{
 		int lu = toNum(LU);
 		Iterator<Position<Par<Integer , Integer>>> it = registroLista.positions().iterator();
@@ -111,7 +139,10 @@ public class Resolvedor {
 		return encontre;
 	}
 	
-	
+	/**
+	 * Mediante un iterador agrega todos los alumnos del registro a un modelo de lista grafica
+	 * @return modelo de lista grafica a mostrar en pantalla
+	 */
 	public DefaultListModel<String> mostrarTodos() {
 		DefaultListModel<String> res = new DefaultListModel<String>();
 		Iterator<Par<Integer , Integer>> it = registroLista.iterator();
@@ -126,7 +157,7 @@ public class Resolvedor {
 	
 	/**
 	 * Calcula el promedio de las notas de los alumnos en el registro
-	 * @return Promedio
+	 * @return Promedio entre todas las notas registradas
 	 * @throws ArithmeticException lanzada cuando no hay alumnos
 	 */
 	public float promedio() throws ArithmeticException {
@@ -142,18 +173,7 @@ public class Resolvedor {
 		return (float)totalNotas / totalAlumnos;
 	}
 
-	public float obtenerPromedio() /*throws ArithmeticException*/{
-		int prom=0;
-		int contador=1;
-		Iterator<Par<Integer , Integer>> it = registroLista.iterator();
-		while(it.hasNext()) {
-			Par<Integer , Integer> p = it.next();
-			prom+=p.getSecond();
-			contador++;
-		}
-		/*if(contador==0) throw new ArithmeticException("Division por 0 (no hay alumnos agregados)");*/
-		return prom/contador;
-	}
+	//TODO Borrar en un futuro
 	public Iterable<Par<Integer, Integer>> obtenerTodos(){
 		return registroLista;
 	}

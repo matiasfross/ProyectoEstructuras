@@ -56,7 +56,9 @@ public class Programa {
 		registro = new ListaDE<Par<String , String>>();
 		initializeFrame();
 	}
-
+	/**
+	 * Inicializa el frame y llama a los metodos para construir los paneles y los botones
+	 */
 	private void initializeFrame() {
 		frame = new JFrame("Registro de notas");
 		frame.setBounds(450, 450, 700, 450);
@@ -68,7 +70,7 @@ public class Programa {
 		armarPanelFuncionalidades();
 	}
 	/**
-	 * Initialize the contents of the frame.
+	 * Inicializa los contenidos del frame
 	 */
 	private void armarPanelInicio() {
 		panelInicio = new JPanel();
@@ -96,7 +98,9 @@ public class Programa {
 	}
 	
 	
-	
+	/**
+	 * Inicializa el panel de funcionalidades que contiene el la caja de funciones de la aplicacion
+	 */
 	private void armarPanelFuncionalidades() {
 
 		funcionalidades = new PanelFuncionalidades();
@@ -105,7 +109,9 @@ public class Programa {
 		
 		
 	}
-	
+	/**
+	 * Arma el boton que vuelve al panel de inicio para registrar una materia nueva 
+	 */
 	private void armarBotonRetorno() {
 		backButton = new JButton("Crear registro de una nueva materia");
 		backButton.addActionListener(new ActionListener() {
@@ -117,7 +123,9 @@ public class Programa {
 		frame.getContentPane().add(backButton, BorderLayout.SOUTH);
 		
 	}
-	
+	/**
+	 * Hace visible al panel de funcionalidades y al boton de registro de nueva materia luego de asignar sobre que materia se llevara un registro de notas
+	 */
 	private void mostrarPanelFuncionalidades() {
 		frame.setTitle(materia);
 		panelInicio.setVisible(false);
@@ -126,7 +134,9 @@ public class Programa {
 		frame.getContentPane().repaint();
 		frame.getContentPane().revalidate();
 	}
-	
+	/**
+	 * Hace visible el panel de inicio luego de presionar el  boton de registro de una nueva materia, esconde el boton presionado y borra el panel de funcionalidades viejo para crear uno nuevo
+	 */
 	private void volverAPanelInicio() {
 		frame.setTitle("Registro de notas");
 		panelInicio.setVisible(true);

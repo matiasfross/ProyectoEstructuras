@@ -2,11 +2,6 @@ package GUI;
 
 import javax.swing.JPanel;
 
-import GUI.PanelesOperaciones.AgregarAlumno;
-import GUI.PanelesOperaciones.ConsultarAlumno;
-import GUI.PanelesOperaciones.EliminarAlumno;
-import GUI.PanelesOperaciones.MostrarTodos;
-import GUI.PanelesOperaciones.Promedio;
 import Lógica.Resolvedor;
 
 import javax.swing.JComboBox;
@@ -14,15 +9,14 @@ import javax.swing.JComboBox;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.FlowLayout;
-import java.awt.Rectangle;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
-import TDALista.PositionList;
-import TDALista.ListaDE;
-import TDAPar.Par;
-
 import javax.swing.DefaultComboBoxModel;
-
+/**
+ * Panel cuya accion principal es contener la caja que emite cada una de las funcionalidades del programa
+ * @author valua
+ *
+ */
 public class PanelFuncionalidades extends JPanel {
 	
 	private final JLabel lblNewLabel = new JLabel("Seleccione la funcionalidad que desea usar");

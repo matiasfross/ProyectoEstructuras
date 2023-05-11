@@ -19,7 +19,12 @@ import TDAPar.Par;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+/**
+ * Panel que tiene dos jaulas de texto para recibir el LU y su respectiva nota
+ * y un boton que ingresa los datos escritos en las jaulas
+ * @author valua
+ *
+ */
 public class AgregarAlumno extends JPanel { 
 	private JTextField LU , nota;
 

@@ -4,7 +4,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import Lógica.Resolvedor;
-
+/**
+ * Panel con una etiqueta que muestra el promedio calculado con la nota de todos los alumnos registrados
+ * @author valua
+ *
+ */
 public class calcularPromedio extends JPanel {
 	public calcularPromedio(Resolvedor r) {
 		float prom;
