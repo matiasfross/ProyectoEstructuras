@@ -60,6 +60,9 @@ public class Resolvedor {
 			case 4:
 				res = new calcularPromedio(this);
 				break;
+			case 7:
+				res = new mostrarDeterminadaNota(this);
+				break;
 		}
 		return res;
 	}
@@ -199,6 +202,17 @@ public class Resolvedor {
 	 */
 	private boolean esNota(int n) {
 		return n >= 0 && n <= 10;
+	}
+	public DefaultListModel<String> buscarDeterminada(String text) throws InvalidGradeException {
+		int n = toNum(text);
+		if(!esNota(n))throw new InvalidGradeException("La nota pasada por párametro no es válida");
+		DefaultListModel<String> res = new DefaultListModel<String>();
+		Iterator<Par<Integer , Integer>> it = registroLista.iterator();
+		while(it.hasNext()) {
+			Par<Integer , Integer> p = it.next();
+			if(p.getSecond()==n) res.addElement(""+p.getFirst()); 
+		}
+		return res;
 	}
 	
 	
