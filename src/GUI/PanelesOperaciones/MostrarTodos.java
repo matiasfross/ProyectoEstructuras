@@ -3,7 +3,11 @@ package GUI.PanelesOperaciones;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
+
+import Excepciones.EmptyListException;
+
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -28,7 +32,12 @@ public class MostrarTodos extends JPanel {
 
 	public MostrarTodos(Resolvedor r) {		
 		JList<String> lista = new JList<String>();
-		lista.setModel(r.mostrarTodos());
+		try {
+			lista.setModel(r.mostrarTodos());
+		}catch(EmptyListException e) {
+			JOptionPane.showMessageDialog(null, "No se encuentran alumnos en el registro", "Dialog",
+			        JOptionPane.ERROR_MESSAGE);
+		}
 		JScrollPane scrollLista = new JScrollPane(lista);
 		scrollLista.setBounds(20, 120, 220, 80);				
 		add(scrollLista, BorderLayout.CENTER);				

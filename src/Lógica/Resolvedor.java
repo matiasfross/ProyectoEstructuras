@@ -10,6 +10,7 @@ import java.util.Iterator;
 import javax.swing.DefaultListModel;
 import javax.swing.JPanel;
 
+import Excepciones.EmptyListException;
 import Excepciones.InvalidGradeException;
 import Excepciones.InvalidPositionException;
 import GUI.PanelesOperaciones.AgregarAlumno;
@@ -17,6 +18,7 @@ import GUI.PanelesOperaciones.ConsultarAlumno;
 import GUI.PanelesOperaciones.EliminarAlumno;
 import GUI.PanelesOperaciones.MostrarTodos;
 import GUI.PanelesOperaciones.calcularPromedio;
+import GUI.PanelesOperaciones.mostrarDeterminadaNota;
 import TDADiccionario.DiccionarioDA;
 /**
  * Clase que recibe que funcionalidad se desea llevar a cabo y que resulve las operaciones logicas de las mismas
@@ -145,8 +147,9 @@ public class Resolvedor {
 	/**
 	 * Mediante un iterador agrega todos los alumnos del registro a un modelo de lista grafica
 	 * @return modelo de lista grafica a mostrar en pantalla
+	 * @throws EmptyListException 
 	 */
-	public DefaultListModel<String> mostrarTodos() {
+	public DefaultListModel<String> mostrarTodos() throws EmptyListException {
 		DefaultListModel<String> res = new DefaultListModel<String>();
 		Iterator<Par<Integer , Integer>> it = registroLista.iterator();
 		while(it.hasNext()) {
@@ -154,6 +157,7 @@ public class Resolvedor {
 			res.addElement(p.getFirst()+": "+p.getSecond());
 
 		}
+		if(res.isEmpty())throw new EmptyListException("No hay alumnos en el registro");
 		return res;
 	}
 
@@ -203,7 +207,7 @@ public class Resolvedor {
 	private boolean esNota(int n) {
 		return n >= 0 && n <= 10;
 	}
-	public DefaultListModel<String> buscarDeterminada(String text) throws InvalidGradeException {
+	public DefaultListModel<String> buscarDeterminada(String text) throws InvalidGradeException, EmptyListException {
 		int n = toNum(text);
 		if(!esNota(n))throw new InvalidGradeException("La nota pasada por párametro no es válida");
 		DefaultListModel<String> res = new DefaultListModel<String>();
@@ -212,6 +216,7 @@ public class Resolvedor {
 			Par<Integer , Integer> p = it.next();
 			if(p.getSecond()==n) res.addElement(""+p.getFirst()); 
 		}
+		if(res.isEmpty())throw new EmptyListException("No hay alumnos con la nota solicitada en el registro");
 		return res;
 	}
 	
