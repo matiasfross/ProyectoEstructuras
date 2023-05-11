@@ -1,6 +1,5 @@
 package Lógica;
 
-import TDADiccionario.Dictionary;
 import TDALista.PositionList;
 import TDALista.ListaDE;
 import TDALista.Position;
@@ -9,13 +8,15 @@ import TDAPar.Par;
 import java.util.Iterator;
 
 import javax.swing.DefaultListModel;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
-import javax.swing.table.AbstractTableModel;
+import javax.swing.JPanel;
 
-import Excepciones.EmptyListException;
 import Excepciones.InvalidGradeException;
 import Excepciones.InvalidPositionException;
+import GUI.PanelesOperaciones.AgregarAlumno;
+import GUI.PanelesOperaciones.ConsultarAlumno;
+import GUI.PanelesOperaciones.EliminarAlumno;
+import GUI.PanelesOperaciones.MostrarTodos;
+import GUI.PanelesOperaciones.calcularPromedio;
 import TDADiccionario.DiccionarioDA;
 public class Resolvedor {
 
@@ -31,6 +32,27 @@ public class Resolvedor {
 		
 	}
 	
+	public JPanel crearPanelFunción(int n) {
+		JPanel res = null;
+		switch(n) {
+			case 0:
+				res = new AgregarAlumno(this);
+				break;
+			case 1:
+				res = new ConsultarAlumno(this);
+				break;
+			case 2:
+				res = new EliminarAlumno(this);
+				break;
+			case 3:
+				res = new MostrarTodos(this);
+				break;
+			case 4:
+				res = new calcularPromedio(this);
+				break;
+		}
+		return res;
+	}
 	public int agregarAlumno(String LU, String nota) throws InvalidGradeException , NumberFormatException{
 		int lu = toNum(LU);
 		int n = toNum(nota);
@@ -90,16 +112,32 @@ public class Resolvedor {
 	}
 	
 	
-	public void mostrarTodos(DefaultListModel<String> modelo) {
+	public DefaultListModel<String> mostrarTodos() {
+		DefaultListModel<String> res = new DefaultListModel<String>();
 		Iterator<Par<Integer , Integer>> it = registroLista.iterator();
 		while(it.hasNext()) {
 			Par<Integer , Integer> p = it.next();
-			modelo.addElement(p.getFirst()+": "+p.getSecond());
+			res.addElement(p.getFirst()+": "+p.getSecond());
 		}
+		return res;
 	}
 	
-	public Iterable<Par<Integer, Integer>> obtenerTodos(){
-		return registroLista;
+	/**
+	 * Calcula el promedio de las notas de los alumnos en el registro
+	 * @return Promedio
+	 * @throws ArithmeticException lanzada cuando no hay alumnos
+	 */
+	public float promedio() throws ArithmeticException {
+		int totalNotas = 0;
+		int totalAlumnos = 0;
+		for (Par<Integer , Integer> p : registroLista) {
+			totalNotas += p.getSecond();
+			totalAlumnos++;
+		}
+		if (totalAlumnos == 0) {
+			throw new ArithmeticException("División entre 0 , no hay alumnos registrados");
+		}
+		return (float)totalNotas / totalAlumnos;
 	}
 	
 	/**

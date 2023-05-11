@@ -59,7 +59,7 @@ public class Programa {
 
 	private void initializeFrame() {
 		frame = new JFrame("Registro de notas");
-		frame.setBounds(450, 450, 450, 450);
+		frame.setBounds(450, 450, 700, 450);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
