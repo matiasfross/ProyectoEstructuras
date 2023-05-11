@@ -16,8 +16,15 @@ import Lógica.Resolvedor;
 public class MostrarTodos extends JPanel {
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public MostrarTodos(Resolvedor r) {
+		JPanel panel = new JPanel();
 		JList<String> lista = new JList<String>();
+
 		lista.setModel(r.mostrarTodos());
 
 		JScrollPane scrollLista = new JScrollPane(lista);
@@ -25,5 +32,6 @@ public class MostrarTodos extends JPanel {
 		add(scrollLista, BorderLayout.CENTER);
 		
 
+		
 	}
 }

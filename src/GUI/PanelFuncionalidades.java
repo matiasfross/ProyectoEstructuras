@@ -6,6 +6,7 @@ import GUI.PanelesOperaciones.AgregarAlumno;
 import GUI.PanelesOperaciones.ConsultarAlumno;
 import GUI.PanelesOperaciones.EliminarAlumno;
 import GUI.PanelesOperaciones.MostrarTodos;
+import GUI.PanelesOperaciones.Promedio;
 import Lógica.Resolvedor;
 
 import javax.swing.JComboBox;
@@ -32,7 +33,6 @@ public class PanelFuncionalidades extends JPanel {
 	 */
 	public PanelFuncionalidades() {
 		resolvedor = new Resolvedor();
-		
 		setLayout(new BorderLayout(0, 0));
 		contenedorOperacion = new JPanel();
 		add(contenedorOperacion, BorderLayout.CENTER);
