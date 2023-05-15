@@ -1,6 +1,7 @@
 package Lógica;
 
 import TDALista.PositionList;
+
 import TDALista.ListaDE;
 import TDALista.Position;
 import TDAPar.Par;
@@ -21,6 +22,7 @@ import GUI.PanelesOperaciones.EliminarAlumno;
 import GUI.PanelesOperaciones.MostrarTodos;
 import GUI.PanelesOperaciones.NotaMinima;
 import GUI.PanelesOperaciones.calcularPromedio;
+import GUI.PanelesOperaciones.mostrarDescendente;
 import GUI.PanelesOperaciones.mostrarDeterminadaNota;
 import TDADiccionario.DiccionarioDA;
 import TDADiccionario.Dictionary;
@@ -28,6 +30,7 @@ import TDADiccionario.Entry;
 import TDAColaCP.PriorityQueue;
 import TDAColaCP.CCPConListaOrdenada;
 import TDAColaCP.DefaultComparator;
+import TDAColaCP.DecreasingComparator;
 /**
  * Clase que recibe que funcionalidad se desea llevar a cabo y que resulve las operaciones logicas de las mismas
  * tiene un atributo que lleva el registro de los alumnos
@@ -71,6 +74,9 @@ public class Resolvedor {
 				break;
 			case 5:
 				res = new NotaMinima(this);
+				break;
+			case 6:
+				res = new mostrarDescendente(this);
 				break;
 			case 7:
 				res = new mostrarDeterminadaNota(this);
@@ -221,6 +227,33 @@ public class Resolvedor {
 		}
 		return res;
 		
+	}
+	
+public DefaultListModel<String> construirDescendente() throws EmptyListException {
+		
+		
+		//TODO cambiar implementación de ccp con heap
+		PriorityQueue<Integer , Integer> ccpNotas = new CCPConListaOrdenada<Integer , Integer>(new DecreasingComparator<Integer>());
+		DefaultListModel<String> res = new DefaultListModel<String>();
+		Iterator<Par<Integer , Integer>> it = registroLista.iterator();
+		while(it.hasNext()) {
+			Par<Integer , Integer> p = it.next();
+			try {
+				ccpNotas.insert(p.getSecond() , p.getFirst());
+			} catch (InvalidKeyException e) {
+				e.printStackTrace();
+			}
+		}
+		try {
+			while(!ccpNotas.isEmpty()) {
+				Entry<Integer , Integer> alum = ccpNotas.removeMin();
+				res.addElement(alum.getValue() + ": " +alum.getKey() );
+			}
+		} catch (EmptyPriorityQueueException e) {
+			e.printStackTrace();
+		}
+		if(res.isEmpty())throw new EmptyListException("No hay alumnos con la nota solicitada en el registro");
+		return res;
 	}
 	
 	/**
