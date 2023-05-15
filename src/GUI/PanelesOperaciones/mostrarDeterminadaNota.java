@@ -19,9 +19,12 @@ import javax.swing.JButton;
 
 public class mostrarDeterminadaNota extends JPanel {
 	private JTextField textField;
+	private JScrollPane scrollLista;
 	
 	public mostrarDeterminadaNota(Resolvedor r) {
+		
 		JLabel msj = new JLabel("Inserte la nota que desea consultar");
+		scrollLista = null;
 		add(msj);
 		
 		textField = new JTextField();
@@ -34,7 +37,13 @@ public class mostrarDeterminadaNota extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
+					if (scrollLista != null) {
+						remove(scrollLista);
+					}
 					lista.setModel(r.buscarDeterminada(textField.getText()));
+					scrollLista = new JScrollPane(lista);
+					scrollLista.setBounds(20, 120, 220, 80);				
+					add(scrollLista, BorderLayout.SOUTH);
 				}catch(NumberFormatException e1) {
 					//TODO AGREGAR MENSAJE DE ERROR
 					JOptionPane.showMessageDialog(null, "Ingrese una nota valida", "Dialog",
@@ -46,9 +55,7 @@ public class mostrarDeterminadaNota extends JPanel {
 					JOptionPane.showMessageDialog(null, "No hay alumnos en el registro con la nota solicitada", "Dialog",
 					        JOptionPane.ERROR_MESSAGE);
 				}
-				JScrollPane scrollLista = new JScrollPane(lista);
-				scrollLista.setBounds(20, 120, 220, 80);				
-				add(scrollLista, BorderLayout.SOUTH);
+				
 				repaint();
 				revalidate();
 			}

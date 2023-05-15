@@ -11,15 +11,23 @@ import javax.swing.DefaultListModel;
 import javax.swing.JPanel;
 
 import Excepciones.EmptyListException;
+import Excepciones.EmptyPriorityQueueException;
 import Excepciones.InvalidGradeException;
+import Excepciones.InvalidKeyException;
 import Excepciones.InvalidPositionException;
 import GUI.PanelesOperaciones.AgregarAlumno;
 import GUI.PanelesOperaciones.ConsultarAlumno;
 import GUI.PanelesOperaciones.EliminarAlumno;
 import GUI.PanelesOperaciones.MostrarTodos;
+import GUI.PanelesOperaciones.NotaMinima;
 import GUI.PanelesOperaciones.calcularPromedio;
 import GUI.PanelesOperaciones.mostrarDeterminadaNota;
 import TDADiccionario.DiccionarioDA;
+import TDADiccionario.Dictionary;
+import TDADiccionario.Entry;
+import TDAColaCP.PriorityQueue;
+import TDAColaCP.CCPConListaOrdenada;
+import TDAColaCP.DefaultComparator;
 /**
  * Clase que recibe que funcionalidad se desea llevar a cabo y que resulve las operaciones logicas de las mismas
  * tiene un atributo que lleva el registro de los alumnos
@@ -32,7 +40,6 @@ public class Resolvedor {
 	//Atributos de instancia
 	
 	private PositionList<Par<Integer , Integer>> registroLista;
-	
 	//Constructor
 	
 	public Resolvedor() {
@@ -61,6 +68,9 @@ public class Resolvedor {
 				break;
 			case 4:
 				res = new calcularPromedio(this);
+				break;
+			case 5:
+				res = new NotaMinima(this);
 				break;
 			case 7:
 				res = new mostrarDeterminadaNota(this);
@@ -186,6 +196,34 @@ public class Resolvedor {
 	}
 	
 	/**
+	 * Retorna la mínima nota en el registro buscándola con una cola con prioridad.
+	 * Si no hay alumnos en el registro , retorna -1.
+	 * @return Nota mínima del registro
+	 */
+	public int consultarMinima() {
+		int res = -1;
+		//TODO cambiar implementacion de ccp por ccp con heap
+		PriorityQueue<Integer , Integer> ccpNotas = new CCPConListaOrdenada<Integer , Integer>(new DefaultComparator()); 
+		for (Par<Integer , Integer> alum : registroLista) {
+			try {
+				ccpNotas.insert(alum.getSecond(), alum.getFirst());
+			} catch (InvalidKeyException e) {
+			
+				e.printStackTrace();
+			}
+		}
+		if (!ccpNotas.isEmpty()) {
+			try {
+				res = ccpNotas.min().getKey();
+			} catch (EmptyPriorityQueueException e) {
+				e.printStackTrace();
+			}
+		}
+		return res;
+		
+	}
+	
+	/**
 	 * Controla si una cadena representa un número y devuelve dicho número
 	 * @param strNum Cadena a controlar
 	 * @return Valor entero de la cadena
@@ -207,14 +245,29 @@ public class Resolvedor {
 	private boolean esNota(int n) {
 		return n >= 0 && n <= 10;
 	}
+	
 	public DefaultListModel<String> buscarDeterminada(String text) throws InvalidGradeException, EmptyListException {
+		
+		
 		int n = toNum(text);
 		if(!esNota(n))throw new InvalidGradeException("La nota pasada por párametro no es válida");
+		Dictionary<Integer , Integer> registroNotas = new DiccionarioDA<Integer , Integer>();
 		DefaultListModel<String> res = new DefaultListModel<String>();
 		Iterator<Par<Integer , Integer>> it = registroLista.iterator();
 		while(it.hasNext()) {
 			Par<Integer , Integer> p = it.next();
-			if(p.getSecond()==n) res.addElement(""+p.getFirst()); 
+			try {
+				registroNotas.insert(p.getSecond() , p.getFirst());
+			} catch (InvalidKeyException e) {
+				e.printStackTrace();
+			}
+		}
+		try {
+			for (Entry< Integer , Integer> alumno : registroNotas.findAll(n)) {
+				res.addElement(alumno.getValue().toString());
+			}
+		} catch (InvalidKeyException e) {
+			e.printStackTrace();
 		}
 		if(res.isEmpty())throw new EmptyListException("No hay alumnos con la nota solicitada en el registro");
 		return res;
