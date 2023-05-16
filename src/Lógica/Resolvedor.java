@@ -19,6 +19,8 @@ import Excepciones.InvalidPositionException;
 import GUI.PanelesOperaciones.AgregarAlumno;
 import GUI.PanelesOperaciones.ConsultarAlumno;
 import GUI.PanelesOperaciones.EliminarAlumno;
+import GUI.PanelesOperaciones.MostrarAprobados;
+import GUI.PanelesOperaciones.MostrarDesaprobados;
 import GUI.PanelesOperaciones.MostrarTodos;
 import GUI.PanelesOperaciones.NotaMinima;
 import GUI.PanelesOperaciones.calcularPromedio;
@@ -43,6 +45,7 @@ public class Resolvedor {
 	//Atributos de instancia
 	
 	private PositionList<Par<Integer , Integer>> registroLista;
+	private static final int NOTA_APROBACION = 6;
 	//Constructor
 	
 	public Resolvedor() {
@@ -80,6 +83,12 @@ public class Resolvedor {
 				break;
 			case 7:
 				res = new mostrarDeterminadaNota(this);
+				break;
+			case 8:
+				res = new MostrarAprobados(this);
+				break;
+			case 9:
+				res = new MostrarDesaprobados(this);
 				break;
 		}
 		return res;
@@ -201,6 +210,37 @@ public class Resolvedor {
 		return registroLista;
 	}
 	
+	public DefaultListModel<String> mostrarAprobados()throws EmptyListException{
+		
+		DefaultListModel<String> res = new DefaultListModel<String>();
+		Iterator<Par<Integer , Integer>> it = registroLista.iterator();
+		while(it.hasNext()) {
+			Par<Integer , Integer> p = it.next();
+			if (p.getSecond() >= NOTA_APROBACION) {
+				res.addElement(p.getFirst()+": "+p.getSecond());
+			}
+			
+
+		}
+		if(res.isEmpty())throw new EmptyListException("No hay alumnos aprobados en el registro");
+		return res;
+	}
+	
+	public DefaultListModel<String> mostrarDesaprobados()throws EmptyListException{
+		
+		DefaultListModel<String> res = new DefaultListModel<String>();
+		Iterator<Par<Integer , Integer>> it = registroLista.iterator();
+		while(it.hasNext()) {
+			Par<Integer , Integer> p = it.next();
+			if (p.getSecond() < NOTA_APROBACION) {
+				res.addElement(p.getFirst()+": "+p.getSecond());
+			}
+			
+
+		}
+		if(res.isEmpty())throw new EmptyListException("No hay alumnos desaprobados en el registro");
+		return res;
+	}
 	/**
 	 * Retorna la mínima nota en el registro buscándola con una cola con prioridad.
 	 * Si no hay alumnos en el registro , retorna -1.
@@ -229,7 +269,7 @@ public class Resolvedor {
 		
 	}
 	
-public DefaultListModel<String> construirDescendente() throws EmptyListException {
+	public DefaultListModel<String> construirDescendente() throws EmptyListException {
 		
 		
 		//TODO cambiar implementación de ccp con heap
