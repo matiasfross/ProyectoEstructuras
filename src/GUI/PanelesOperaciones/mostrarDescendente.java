@@ -9,7 +9,12 @@ import javax.swing.JScrollPane;
 
 import Excepciones.EmptyListException;
 import Lógica.Resolvedor;
-
+/**
+ * Panel qcon una lista grafica que muestra a los alumnos de forma descendente segun sus notas
+ * Muestra un mensaje de error si no hay alumnos en el registro
+ * @author valua
+ *
+ */
 public class mostrarDescendente extends JPanel {
 
 	public mostrarDescendente(Resolvedor r) {

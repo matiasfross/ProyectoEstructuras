@@ -209,7 +209,11 @@ public class Resolvedor {
 	public Iterable<Par<Integer, Integer>> obtenerTodos(){
 		return registroLista;
 	}
-	
+	/**
+	 * 	Construye un modelo de lista en el que mediante un iterador agrega los alumnos cuya nota esta aprobada
+	 * @return modelo de lista que contiene los alumnos aprobados
+	 * @throws EmptyListException Si no hay alumnos aprobados en el registro
+	 */
 	public DefaultListModel<String> mostrarAprobados()throws EmptyListException{
 		
 		DefaultListModel<String> res = new DefaultListModel<String>();
@@ -225,7 +229,11 @@ public class Resolvedor {
 		if(res.isEmpty())throw new EmptyListException("No hay alumnos aprobados en el registro");
 		return res;
 	}
-	
+	/**
+	 * Construye un modelo de lista en el que mediante un iterador agrega los alumnos cuya nota esta desaprobada
+	 * @return modelo de lista que contiene  los alumnos desaprobado
+	 * @throws EmptyListException Si no hay alumnos desaprobados en el registro
+	 */
 	public DefaultListModel<String> mostrarDesaprobados()throws EmptyListException{
 		
 		DefaultListModel<String> res = new DefaultListModel<String>();
@@ -268,7 +276,12 @@ public class Resolvedor {
 		return res;
 		
 	}
-	
+	/**
+	 * Mediante un iterador mueve las notas del registro desde una lista a una cola con prioridad.
+	 * Desde la cola con prioridad, remueve el minimo para agregarlo al modelo de lista grafica de forma descentente
+	 * @return Modelo de lista segun la nota de los alumnos de forma descendente
+	 * @throws EmptyListException Si no hay alumnos en el registro
+	 */
 	public DefaultListModel<String> construirDescendente() throws EmptyListException {
 		
 		
@@ -292,7 +305,7 @@ public class Resolvedor {
 		} catch (EmptyPriorityQueueException e) {
 			e.printStackTrace();
 		}
-		if(res.isEmpty())throw new EmptyListException("No hay alumnos con la nota solicitada en el registro");
+		if(res.isEmpty())throw new EmptyListException("No hay alumnos en el registro");
 		return res;
 	}
 	
@@ -318,7 +331,14 @@ public class Resolvedor {
 	private boolean esNota(int n) {
 		return n >= 0 && n <= 10;
 	}
-	
+	/**
+	 * Mediante un iterador de la lista de registro de alumnos, cosntruye un diccionario que guarda las notas como clave y el lu como valor
+	 * Luego busca todos los alumnos con la nota pasada por parametro y los agrega a un modelo de lista grafica 
+	 * @param text Nota a consultar
+	 * @return Modelo de lista grafica que contiene los alumnos con la nota pasada por parametro
+	 * @throws InvalidGradeException Si la nota pasada por parametro no es valida
+	 * @throws EmptyListException Si no hay alumnos con la nota solicitada en el registro
+	 */
 	public DefaultListModel<String> buscarDeterminada(String text) throws InvalidGradeException, EmptyListException {
 		
 		

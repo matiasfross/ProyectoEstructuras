@@ -5,7 +5,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Lógica.Resolvedor;
-
+/**
+ * Panel que contiene una etiqueta con la nota minima en el regitro
+ * Si no hay alumnos en el registro muestra un mensaje de error
+ * @author valua
+ *
+ */
 public class NotaMinima extends JPanel {
 	public NotaMinima(Resolvedor r) {
 		int min;

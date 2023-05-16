@@ -9,7 +9,12 @@ import javax.swing.JScrollPane;
 
 import Excepciones.EmptyListException;
 import Lógica.Resolvedor;
-
+/**
+ * Panel que muestra una lista con todos los alumnos aprobados
+ * Muestra un mensaje de error si no hay alumnos aprobados en el registro
+ * @author valua
+ *
+ */
 public class MostrarAprobados extends JPanel {
 	public MostrarAprobados(Resolvedor r) {
 		JList<String> lista = new JList<String>();

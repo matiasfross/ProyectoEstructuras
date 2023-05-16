@@ -16,7 +16,13 @@ import Lógica.Resolvedor;
 
 import javax.swing.JLabel;
 import javax.swing.JButton;
-
+/**
+ * Panel con un boton, una etiqueta y una jaula de texto que pregunta la nota que se desea consultar
+ * Luego muestra una lista grafica que contiene a los alumnos que tienen la nota pasada por la jaula de texto
+ * Segun lo que se escriba en la jaula de texto puede enviar tres mensajes de error(nota invalida o nota no registrada)
+ * @author valua
+ *
+ */
 public class mostrarDeterminadaNota extends JPanel {
 	private JTextField textField;
 	private JScrollPane scrollLista;

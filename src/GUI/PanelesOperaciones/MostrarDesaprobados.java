@@ -9,7 +9,12 @@ import javax.swing.JScrollPane;
 
 import Excepciones.EmptyListException;
 import Lógica.Resolvedor;
-
+/**
+ * Panel que muestra una lista con todos los alumnos desaprobados
+ * Muestra un mensaje de error si no hay alumnos desaprobados en el registro
+ * @author valua
+ *
+ */
 public class MostrarDesaprobados extends JPanel {
 	
 	public MostrarDesaprobados(Resolvedor r) {
