@@ -1,7 +1,6 @@
 package Excepciones;
-/**
- * Lanzada cuando se traspasan los límites de una estructura
- * 
+/** 
+ * Modela una situacion en la que se traspasan los límites de una estructura  
  *
  */
 public class BoundaryViolationException extends Exception{

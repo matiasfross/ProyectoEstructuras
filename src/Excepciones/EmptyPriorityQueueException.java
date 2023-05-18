@@ -1,7 +1,7 @@
 package Excepciones;
 
 /**
- * Lanzada cuando una cola con prioridad está vacía
+ *  Modela una situacion en la que se intenta accionar sobre una cola con prioridad sin ningun elemento
  * @author Matias
  *
  */

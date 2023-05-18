@@ -19,7 +19,7 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class PanelFuncionalidades extends JPanel {
 	
-	private final JLabel lblNewLabel = new JLabel("Seleccione la funcionalidad que desea usar");
+	private final JLabel functionLabel = new JLabel("Seleccione la funcionalidad que desea usar");
 	private Resolvedor resolvedor;
 	private JPanel panelOperacion , contenedorOperacion;
 	/**
@@ -34,7 +34,7 @@ public class PanelFuncionalidades extends JPanel {
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.NORTH);
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		panel.add(lblNewLabel);
+		panel.add(functionLabel);
 		JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Agregar nuevo alumno", "Consultar alumno", "Eliminar alumno", "Mostrar todos los alumnos", "Promedio de notas del registro", "Nota mínima del registro", "Mostrar notas de mayor a menor", "Mostrar alumnos con determinada nota", "Mostrar aprobados", "Mostrar desaprobados"}));
 		panel.add(comboBox);

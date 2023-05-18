@@ -1,7 +1,7 @@
 package Excepciones;
 
 /**
- * Lanzada cuando una nota no es válida
+ * Modela una situacion en la que una nota ingresada no es valida
  * @author Matias
  *
  */

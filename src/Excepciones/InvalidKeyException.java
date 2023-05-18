@@ -1,7 +1,7 @@
 package Excepciones;
 
 /**
- * Lanzada cuando una clave es inválida
+ * Modela una situacion en la que una clave ingresada es inválida
  * 
  *
  */

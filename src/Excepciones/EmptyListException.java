@@ -1,7 +1,6 @@
 package Excepciones;
 /**
- * Lanzada cuando una lista está vacía
- * 
+ * Modela una situacion en la que se intenta accionar sobre una lista sin ningun elemento
  *
  */
 public class EmptyListException extends Exception {

@@ -25,9 +25,9 @@ public class Programa {
 	
 	
 	private JFrame frame;
-	private JTextField textField;
-	private JLabel lblNewLabel;
-	private JButton btnNewButton , backButton;
+	private JTextField jaulaTxtMateria;
+	private JLabel subjectLabel;
+	private JButton enterButton , backButton;
 	private JPanel panelInicio , funcionalidades;
 	private String materia;
 	private PositionList<Par<String , String>> registro;
@@ -77,23 +77,23 @@ public class Programa {
 		panelInicio.setBackground(new Color(0, 255, 255));
 		
 		
-		lblNewLabel = new JLabel("Ingrese el nombre de la materia y presione ingresar");
-		lblNewLabel.setBounds(100, 133, 304, 14);
-		panelInicio.add(lblNewLabel);
+		subjectLabel = new JLabel("Ingrese el nombre de la materia y presione ingresar");
+		subjectLabel.setBounds(100, 133, 304, 14);
+		panelInicio.add(subjectLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(146, 158, 144, 23);
-		panelInicio.add(textField);
-		textField.setColumns(10);		
-		btnNewButton = new JButton("Ingresar");
-		btnNewButton.setBounds(171, 192, 104, 28);
-		btnNewButton.addActionListener(new ActionListener() {
+		jaulaTxtMateria = new JTextField();
+		jaulaTxtMateria.setBounds(146, 158, 144, 23);
+		panelInicio.add(jaulaTxtMateria);
+		jaulaTxtMateria.setColumns(10);		
+		enterButton = new JButton("Ingresar");
+		enterButton.setBounds(171, 192, 104, 28);
+		enterButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				materia = textField.getText();
+				materia = jaulaTxtMateria.getText();
 				mostrarPanelFuncionalidades();
 			}
 		});		
-		panelInicio.add(btnNewButton);
+		panelInicio.add(enterButton);
 		frame.getContentPane().add(panelInicio, BorderLayout.CENTER);
 	}
 	

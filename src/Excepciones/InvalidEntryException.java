@@ -1,7 +1,7 @@
 package Excepciones;
 
 /**
- * Lanzada cuando una entrada no es válida
+ * Modela una situacion en la que una entrada ingresada no es valida
  * @author Matias
  *
  */

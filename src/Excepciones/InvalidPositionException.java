@@ -1,7 +1,7 @@
 package Excepciones;
 
 /**
- * Lanzada cuando la posición dada no es válida
+ * Modela una situacion en la que una posición ingresada no es válida
  * 
  *
  */

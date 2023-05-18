@@ -109,19 +109,16 @@ public class Resolvedor {
 		
 		Iterator<Par<Integer , Integer>> it = registroLista.iterator();
 		int res = -1;
-		
 		while (it.hasNext() && res == -1) {
 			Par<Integer , Integer> p = it.next();
 			if (p.getFirst() ==  lu) {
 				res = p.getSecond();
 				p.setSecond(n);
 			}
-		}
-		
+		}		
 		if (res == -1) {
 			registroLista.addLast(new Par<Integer , Integer>(lu , n));
-		}
-		
+		}		
 		return res;
 	}
 	/**
@@ -209,17 +206,14 @@ public class Resolvedor {
 	 * @return modelo de lista que contiene los alumnos aprobados
 	 * @throws EmptyListException Si no hay alumnos aprobados en el registro
 	 */
-	public DefaultListModel<String> mostrarAprobados()throws EmptyListException{
-		
+	public DefaultListModel<String> mostrarAprobados()throws EmptyListException{		
 		DefaultListModel<String> res = new DefaultListModel<String>();
 		Iterator<Par<Integer , Integer>> it = registroLista.iterator();
 		while(it.hasNext()) {
 			Par<Integer , Integer> p = it.next();
 			if (p.getSecond() >= NOTA_APROBACION) {
 				res.addElement(p.getFirst()+": "+p.getSecond());
-			}
-			
-
+			}			
 		}
 		if(res.isEmpty())throw new EmptyListException("No hay alumnos aprobados en el registro");
 		return res;
@@ -229,8 +223,7 @@ public class Resolvedor {
 	 * @return modelo de lista que contiene  los alumnos desaprobado
 	 * @throws EmptyListException Si no hay alumnos desaprobados en el registro
 	 */
-	public DefaultListModel<String> mostrarDesaprobados()throws EmptyListException{
-		
+	public DefaultListModel<String> mostrarDesaprobados()throws EmptyListException{		
 		DefaultListModel<String> res = new DefaultListModel<String>();
 		Iterator<Par<Integer , Integer>> it = registroLista.iterator();
 		while(it.hasNext()) {
@@ -238,8 +231,6 @@ public class Resolvedor {
 			if (p.getSecond() < NOTA_APROBACION) {
 				res.addElement(p.getFirst()+": "+p.getSecond());
 			}
-			
-
 		}
 		if(res.isEmpty())throw new EmptyListException("No hay alumnos desaprobados en el registro");
 		return res;
@@ -255,8 +246,7 @@ public class Resolvedor {
 		for (Par<Integer , Integer> alum : registroLista) {
 			try {
 				ccpNotas.insert(alum.getSecond(), alum.getFirst());
-			} catch (InvalidKeyException e) {
-			
+			} catch (InvalidKeyException e) {			
 				e.printStackTrace();
 			}
 		}

@@ -17,26 +17,26 @@ import java.awt.event.ActionEvent;
  *
  */
 public class EliminarAlumno extends JPanel {
-	private JTextField textField;
+	private JTextField fileTextField;
 
 	/**
 	 * Create the panel.
 	 */
 	public EliminarAlumno(Resolvedor r) {
 		
-		JLabel lblNewLabel = new JLabel("Ingrese el LU del alumno que desea eliminar del registro");
-		add(lblNewLabel);
+		JLabel fileLabel = new JLabel("Ingrese el LU del alumno que desea eliminar del registro");
+		add(fileLabel);
 		
-		textField = new JTextField();
-		add(textField);
-		textField.setColumns(10);
+		fileTextField = new JTextField();
+		add(fileTextField);
+		fileTextField.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Eliminar");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton removeButton = new JButton("Eliminar");
+		removeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					String LU = textField.getText();
-					boolean eliminado = r.eliminarNota(textField.getText());
+					String LU = fileTextField.getText();
+					boolean eliminado = r.eliminarNota(fileTextField.getText());
 					if (eliminado) {
 						JOptionPane.showMessageDialog(null, "El alumno de LU " + LU + " ha sido eliminado del registro");
 					} else {
@@ -49,7 +49,7 @@ public class EliminarAlumno extends JPanel {
 				}
 			}
 		});
-		add(btnNewButton);
+		add(removeButton);
 
 	}
 

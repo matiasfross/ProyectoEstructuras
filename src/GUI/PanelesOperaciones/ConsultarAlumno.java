@@ -16,27 +16,27 @@ import java.awt.event.ActionEvent;
  *
  */
 public class ConsultarAlumno extends JPanel {
-	private JTextField textField;
+	private JTextField fileTextField;
 
 	/**
 	 * Create the panel.
 	 */
 	public ConsultarAlumno(Resolvedor r) {
 		
-		JLabel lblNewLabel = new JLabel("Ingrese el LU del alumno que desea consultar");
-		add(lblNewLabel);
+		JLabel fileLabel = new JLabel("Ingrese el LU del alumno que desea consultar");
+		add(fileLabel);
 		
-		textField = new JTextField();
-		add(textField);
-		textField.setColumns(10);
+		fileTextField = new JTextField();
+		add(fileTextField);
+		fileTextField.setColumns(10);
 		
 		
-		JButton btnNewButton = new JButton("Buscar");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton searchButton = new JButton("Buscar");
+		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				try {
-					int nota = r.consultarNota(textField.getText());
+					int nota = r.consultarNota(fileTextField.getText());
 					if (nota == -1) {
 						JOptionPane.showMessageDialog(null, "Este LU no se encuentra en el registro", "Dialog",
 						        JOptionPane.ERROR_MESSAGE);
@@ -49,7 +49,7 @@ public class ConsultarAlumno extends JPanel {
 				}
 			}
 		});
-		add(btnNewButton);
+		add(searchButton);
 		
 	}
 

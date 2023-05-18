@@ -34,12 +34,12 @@ public class AgregarAlumno extends JPanel {
 	public AgregarAlumno(Resolvedor r) {
 		setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel = new JLabel("Ingrese los datos del alumno");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		add(lblNewLabel, BorderLayout.NORTH);
+		JLabel dataLabel = new JLabel("Ingrese los datos del alumno");
+		dataLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		add(dataLabel, BorderLayout.NORTH);
 		
-		JButton btnNewButton = new JButton("Guardar");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton saveButton = new JButton("Guardar");
+		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int notaAnterior;
 				try {
@@ -59,21 +59,21 @@ public class AgregarAlumno extends JPanel {
 				
 			}
 		});
-		add(btnNewButton, BorderLayout.SOUTH);
+		add(saveButton, BorderLayout.SOUTH);
 		
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.CENTER);
 		panel.setLayout(new GridLayout(2, 2, 0, 0));
 		
-		JLabel lblNewLabel_1 = new JLabel("Número de libreta");
-		panel.add(lblNewLabel_1);
+		JLabel fileLabel = new JLabel("Número de libreta");
+		panel.add(fileLabel);
 		
 		LU = new JTextField();
 		panel.add(LU);
 		LU.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Nota");
-		panel.add(lblNewLabel_2);
+		JLabel gradeLabel = new JLabel("Nota");
+		panel.add(gradeLabel);
 		
 		nota = new JTextField();
 		panel.add(nota);
