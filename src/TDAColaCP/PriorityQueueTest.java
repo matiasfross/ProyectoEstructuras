@@ -5,9 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import Auxiliares.Entry;
 import Excepciones.EmptyPriorityQueueException;
 import Excepciones.InvalidKeyException;
-import TDADiccionario.Entry;
 
 public class PriorityQueueTest {
 	private PriorityQueue<Integer, String> s; // interface
@@ -15,7 +15,7 @@ public class PriorityQueueTest {
 	private Integer i1, i2, i3, i4, i5, i6;
 
 	private PriorityQueue<Integer, String> getPriorityQueue() {
-		return new CCPConListaOrdenada<Integer, String>(new DefaultComparator<Integer>());
+		return new CCPConHeap<Integer, String>(new DefaultComparator<Integer>());
 
 	}
 

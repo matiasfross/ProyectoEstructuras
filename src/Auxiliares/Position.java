@@ -1,4 +1,4 @@
-package TDALista;
+package Auxiliares;
 
 /**
  * Posición en una estructura

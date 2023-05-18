@@ -1,4 +1,4 @@
-package TDADiccionario;
+package Auxiliares;
 
 /**
  * Entrada con clave y valor

@@ -1,10 +1,11 @@
 package TDALista;
 
 import java.util.Iterator;
-import TDALista.Position;
+
 import TDALista.PositionList;
 import java.util.NoSuchElementException;
 
+import Auxiliares.Position;
 import Excepciones.BoundaryViolationException;
 import Excepciones.EmptyListException;
 import Excepciones.InvalidPositionException;

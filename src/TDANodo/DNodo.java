@@ -1,6 +1,6 @@
 package TDANodo;
 
-import TDALista.Position;
+import Auxiliares.Position;
 /**
  * Nodo de doble enlace
  * @author Matias

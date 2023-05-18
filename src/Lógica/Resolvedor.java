@@ -3,7 +3,6 @@ package Lógica;
 import TDALista.PositionList;
 
 import TDALista.ListaDE;
-import TDALista.Position;
 import TDAPar.Par;
 
 import java.util.Iterator;
@@ -11,6 +10,8 @@ import java.util.Iterator;
 import javax.swing.DefaultListModel;
 import javax.swing.JPanel;
 
+import Auxiliares.Entry;
+import Auxiliares.Position;
 import Excepciones.EmptyListException;
 import Excepciones.EmptyPriorityQueueException;
 import Excepciones.InvalidGradeException;
@@ -28,9 +29,8 @@ import GUI.PanelesOperaciones.mostrarDescendente;
 import GUI.PanelesOperaciones.mostrarDeterminadaNota;
 import TDADiccionario.DiccionarioDA;
 import TDADiccionario.Dictionary;
-import TDADiccionario.Entry;
 import TDAColaCP.PriorityQueue;
-import TDAColaCP.CCPConListaOrdenada;
+import TDAColaCP.CCPConHeap;
 import TDAColaCP.DefaultComparator;
 import TDAColaCP.DecreasingComparator;
 /**
@@ -50,7 +50,6 @@ public class Resolvedor {
 	
 	public Resolvedor() {
 		registroLista = new ListaDE<Par<Integer , Integer>>();
-		
 	}
 	/**
 	 * Crea un panel de acuerdo a la funcion que se quiera utilizar
@@ -205,10 +204,6 @@ public class Resolvedor {
 		return (float)totalNotas / totalAlumnos;
 	}
 
-	//TODO Borrar en un futuro
-	public Iterable<Par<Integer, Integer>> obtenerTodos(){
-		return registroLista;
-	}
 	/**
 	 * 	Construye un modelo de lista en el que mediante un iterador agrega los alumnos cuya nota esta aprobada
 	 * @return modelo de lista que contiene los alumnos aprobados
@@ -256,8 +251,7 @@ public class Resolvedor {
 	 */
 	public int consultarMinima() {
 		int res = -1;
-		//TODO cambiar implementacion de ccp por ccp con heap
-		PriorityQueue<Integer , Integer> ccpNotas = new CCPConListaOrdenada<Integer , Integer>(new DefaultComparator()); 
+		PriorityQueue<Integer , Integer> ccpNotas = new CCPConHeap<Integer , Integer>(new DefaultComparator<Integer>()); 
 		for (Par<Integer , Integer> alum : registroLista) {
 			try {
 				ccpNotas.insert(alum.getSecond(), alum.getFirst());
@@ -284,9 +278,7 @@ public class Resolvedor {
 	 */
 	public DefaultListModel<String> construirDescendente() throws EmptyListException {
 		
-		
-		//TODO cambiar implementación de ccp con heap
-		PriorityQueue<Integer , Integer> ccpNotas = new CCPConListaOrdenada<Integer , Integer>(new DecreasingComparator<Integer>());
+		PriorityQueue<Integer , Integer> ccpNotas = new CCPConHeap<Integer , Integer>(new DecreasingComparator<Integer>());
 		DefaultListModel<String> res = new DefaultListModel<String>();
 		Iterator<Par<Integer , Integer>> it = registroLista.iterator();
 		while(it.hasNext()) {

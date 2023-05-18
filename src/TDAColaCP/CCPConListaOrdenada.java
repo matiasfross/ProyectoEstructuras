@@ -4,15 +4,15 @@ import java.util.Comparator;
 
 import java.util.Iterator;
 
+import Auxiliares.Entrada;
+import Auxiliares.Entry;
+import Auxiliares.Position;
 import Excepciones.EmptyListException;
 import Excepciones.EmptyPriorityQueueException;
 import Excepciones.InvalidKeyException;
 import Excepciones.InvalidPositionException;
 import TDALista.PositionList;
 import TDALista.ListaDE;
-import TDALista.Position;
-import TDADiccionario.Entry;
-import TDADiccionario.Entrada;
 
 /**
  * Cola con prioridad con una lista ordenada

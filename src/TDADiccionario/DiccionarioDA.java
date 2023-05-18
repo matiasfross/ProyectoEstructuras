@@ -2,12 +2,14 @@ package TDADiccionario;
 
 import java.util.Iterator;
 
+import Auxiliares.Entrada;
+import Auxiliares.Entry;
+import Auxiliares.Position;
 import Excepciones.InvalidEntryException;
 import Excepciones.InvalidKeyException;
 import Excepciones.InvalidPositionException;
 import TDALista.PositionList;
 import TDALista.ListaDE;
-import TDALista.Position;
 
 /**
  * Diccionario con tabla hash de dispersión abierta
