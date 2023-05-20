@@ -2,6 +2,12 @@ package TDAColaCP;
 
 import java.util.Comparator;
 
+/**
+ * Comparador regular
+ * 
+ *
+ * @param <E> Tipo de dato a comparar
+ */
 public class DefaultComparator<E extends Comparable<E>> implements Comparator<E> {
 
 	@Override

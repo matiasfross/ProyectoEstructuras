@@ -1,6 +1,5 @@
-package TDANodo;
+package Auxiliares;
 
-import Auxiliares.Position;
 /**
  * Nodo de doble enlace
  * @author Matias

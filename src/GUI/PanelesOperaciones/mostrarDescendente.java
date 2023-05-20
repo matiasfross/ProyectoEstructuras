@@ -15,9 +15,9 @@ import Lógica.Resolvedor;
  * @author valua
  *
  */
-public class mostrarDescendente extends JPanel {
+public class MostrarDescendente extends JPanel {
 
-	public mostrarDescendente(Resolvedor r) {
+	public MostrarDescendente(Resolvedor r) {
 		JList<String> lista = new JList<String>();
 		try {
 			lista.setModel(r.construirDescendente());

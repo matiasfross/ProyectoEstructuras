@@ -9,8 +9,8 @@ import Lógica.Resolvedor;
  * @author valua
  *
  */
-public class calcularPromedio extends JPanel {
-	public calcularPromedio(Resolvedor r) {
+public class CalcularPromedio extends JPanel {
+	public CalcularPromedio(Resolvedor r) {
 		float prom;
 		try {
 			prom = r.promedio();

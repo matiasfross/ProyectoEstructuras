@@ -21,6 +21,11 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * 
+ * Clase principal encargada de iniciar y crear la ventana del programa de prueba
+ *
+ */
 public class Programa {
 	
 	

@@ -9,7 +9,7 @@ import Auxiliares.Entry;
 
 /**
  * Cola con prioridad con heap
- * @author Matias
+ * 
  *
  * @param <K> Tipo de dato de la clave
  * @param <V> Tipo de dato del valor

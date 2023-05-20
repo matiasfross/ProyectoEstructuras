@@ -23,11 +23,11 @@ import javax.swing.JButton;
  * @author valua
  *
  */
-public class mostrarDeterminadaNota extends JPanel {
+public class MostrarDeterminadaNota extends JPanel {
 	private JTextField gradeTextField;
 	private JScrollPane scrollLista;
 	
-	public mostrarDeterminadaNota(Resolvedor r) {
+	public MostrarDeterminadaNota(Resolvedor r) {
 		
 		JLabel gradeLabel = new JLabel("Inserte la nota que desea consultar");
 		scrollLista = null;

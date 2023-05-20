@@ -24,9 +24,9 @@ import GUI.PanelesOperaciones.MostrarAprobados;
 import GUI.PanelesOperaciones.MostrarDesaprobados;
 import GUI.PanelesOperaciones.MostrarTodos;
 import GUI.PanelesOperaciones.NotaMinima;
-import GUI.PanelesOperaciones.calcularPromedio;
-import GUI.PanelesOperaciones.mostrarDescendente;
-import GUI.PanelesOperaciones.mostrarDeterminadaNota;
+import GUI.PanelesOperaciones.CalcularPromedio;
+import GUI.PanelesOperaciones.MostrarDescendente;
+import GUI.PanelesOperaciones.MostrarDeterminadaNota;
 import TDADiccionario.DiccionarioDA;
 import TDADiccionario.Dictionary;
 import TDAColaCP.PriorityQueue;
@@ -72,16 +72,16 @@ public class Resolvedor {
 				res = new MostrarTodos(this);
 				break;
 			case 4:
-				res = new calcularPromedio(this);
+				res = new CalcularPromedio(this);
 				break;
 			case 5:
 				res = new NotaMinima(this);
 				break;
 			case 6:
-				res = new mostrarDescendente(this);
+				res = new MostrarDescendente(this);
 				break;
 			case 7:
-				res = new mostrarDeterminadaNota(this);
+				res = new MostrarDeterminadaNota(this);
 				break;
 			case 8:
 				res = new MostrarAprobados(this);
