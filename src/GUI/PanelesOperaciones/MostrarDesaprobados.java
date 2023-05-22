@@ -17,6 +17,10 @@ import Lógica.Resolvedor;
  */
 public class MostrarDesaprobados extends JPanel {
 	
+	/**
+	 * Crea un nuevo panel para la funcionalidad "mostrar desaprobados" 
+	 * @param r Resolvedor encargado de la lógica del programa
+	 */
 	public MostrarDesaprobados(Resolvedor r) {
 		JList<String> lista = new JList<String>();
 		try {

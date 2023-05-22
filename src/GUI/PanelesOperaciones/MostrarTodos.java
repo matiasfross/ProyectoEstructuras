@@ -30,6 +30,10 @@ public class MostrarTodos extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Crea un nuevo panel para la funcionalidad "mostrar todos los alumnos en el registro" 
+	 * @param r Resolvedor encargado de la lógica del programa
+	 */
 	public MostrarTodos(Resolvedor r) {		
 		JList<String> lista = new JList<String>();
 		try {

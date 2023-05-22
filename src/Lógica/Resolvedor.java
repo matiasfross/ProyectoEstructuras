@@ -48,6 +48,9 @@ public class Resolvedor {
 	private static final int NOTA_APROBACION = 6;
 	//Constructor
 	
+	/**
+	 * Crea un nuevo resolvedor que se encarga de la lógica de la aplicación
+	 */
 	public Resolvedor() {
 		registroLista = new ListaDE<Par<Integer , Integer>>();
 	}

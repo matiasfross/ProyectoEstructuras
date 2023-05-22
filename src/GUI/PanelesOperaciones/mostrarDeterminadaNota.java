@@ -27,6 +27,10 @@ public class MostrarDeterminadaNota extends JPanel {
 	private JTextField gradeTextField;
 	private JScrollPane scrollLista;
 	
+	/**
+	 * Crea un nuevo panel para la funcionalidad "mostrar alumno con una nota determinada" 
+	 * @param r Resolvedor encargado de la lógica del programa
+	 */
 	public MostrarDeterminadaNota(Resolvedor r) {
 		
 		JLabel gradeLabel = new JLabel("Inserte la nota que desea consultar");

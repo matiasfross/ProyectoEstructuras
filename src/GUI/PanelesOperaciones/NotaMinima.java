@@ -12,6 +12,10 @@ import Lógica.Resolvedor;
  *
  */
 public class NotaMinima extends JPanel {
+	/**
+	 * Crea un nuevo panel para la funcionalidad "mostrar nota mínima en el registro" 
+	 * @param r Resolvedor encargado de la lógica del programa
+	 */
 	public NotaMinima(Resolvedor r) {
 		int min;
 		

@@ -20,7 +20,8 @@ public class EliminarAlumno extends JPanel {
 	private JTextField fileTextField;
 
 	/**
-	 * Create the panel.
+	 * Crea un nuevo panel para la funcionalidad "eliminar alumno del registro" 
+	 * @param r Resolvedor encargado de la lógica del programa
 	 */
 	public EliminarAlumno(Resolvedor r) {
 		

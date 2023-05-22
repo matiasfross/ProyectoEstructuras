@@ -19,7 +19,8 @@ public class ConsultarAlumno extends JPanel {
 	private JTextField fileTextField;
 
 	/**
-	 * Create the panel.
+	 * Crea un nuevo panel para la funcionalidad "consultar alumno en el registro" 
+	 * @param r Resolvedor encargado de la lógica del programa
 	 */
 	public ConsultarAlumno(Resolvedor r) {
 		

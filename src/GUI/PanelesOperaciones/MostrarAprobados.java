@@ -16,6 +16,10 @@ import Lógica.Resolvedor;
  *
  */
 public class MostrarAprobados extends JPanel {
+	/**
+	 * Crea un nuevo panel para la funcionalidad "mostrar aprobados" 
+	 * @param r Resolvedor encargado de la lógica del programa
+	 */
 	public MostrarAprobados(Resolvedor r) {
 		JList<String> lista = new JList<String>();
 		try {

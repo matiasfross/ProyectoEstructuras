@@ -35,7 +35,6 @@ public class Programa {
 	private JButton enterButton , backButton;
 	private JPanel panelInicio , funcionalidades;
 	private String materia;
-	private PositionList<Par<String , String>> registro;
 	
 	/**
 	 * Launch the application.
@@ -58,7 +57,6 @@ public class Programa {
 	 * Create the application.
 	 */
 	public Programa() {
-		registro = new ListaDE<Par<String , String>>();
 		initializeFrame();
 	}
 	/**

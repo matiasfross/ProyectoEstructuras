@@ -29,7 +29,8 @@ public class AgregarAlumno extends JPanel {
 	private JTextField LU , nota;
 
 	/**
-	 * Create the panel.
+	 * Crea un nuevo panel para la funcionalidad "agregar alumno" 
+	 * @param r Resolvedor encargado de la lógica del programa
 	 */
 	public AgregarAlumno(Resolvedor r) {
 		setLayout(new BorderLayout(0, 0));

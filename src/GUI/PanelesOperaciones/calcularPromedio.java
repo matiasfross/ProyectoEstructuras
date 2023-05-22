@@ -10,6 +10,10 @@ import Lógica.Resolvedor;
  *
  */
 public class CalcularPromedio extends JPanel {
+	/**
+	 * Crea un nuevo panel para la funcionalidad "calcular nota promedio" 
+	 * @param r Resolvedor encargado de la lógica del programa
+	 */
 	public CalcularPromedio(Resolvedor r) {
 		float prom;
 		try {

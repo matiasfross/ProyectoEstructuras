@@ -17,6 +17,10 @@ import Lógica.Resolvedor;
  */
 public class MostrarDescendente extends JPanel {
 
+	/**
+	 * Crea un nuevo panel para la funcionalidad "mostrar alumnos según su nota de mayor a menor" 
+	 * @param r Resolvedor encargado de la lógica del programa
+	 */
 	public MostrarDescendente(Resolvedor r) {
 		JList<String> lista = new JList<String>();
 		try {
