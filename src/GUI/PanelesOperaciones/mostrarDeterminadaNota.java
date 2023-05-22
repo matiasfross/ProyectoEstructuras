@@ -13,8 +13,11 @@ import javax.swing.JTextField;
 import Excepciones.EmptyListException;
 import Excepciones.InvalidGradeException;
 import Lógica.Resolvedor;
+import TDAPar.Pair;
+import TDAPar.Par;
 
 import javax.swing.JLabel;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 /**
  * Panel con un boton, una etiqueta y una jaula de texto que pregunta la nota que se desea consultar
@@ -47,21 +50,29 @@ public class MostrarDeterminadaNota extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
+					DefaultListModel<String> alumnosEncontrados = new DefaultListModel<String>();
 					if (scrollLista != null) {
 						remove(scrollLista);
 					}
-					lista.setModel(r.buscarDeterminada(gradeTextField.getText()));
-					scrollLista = new JScrollPane(lista);
-					scrollLista.setBounds(20, 120, 220, 80);				
-					add(scrollLista, BorderLayout.SOUTH);
+					for (Pair<Integer , Integer> alumno : r.buscarDeterminada(gradeTextField.getText())) {
+						alumnosEncontrados.addElement(alumno.getFirst()+ ": " + alumno.getSecond());
+					}
+					
+					if (alumnosEncontrados.isEmpty()) {
+						JOptionPane.showMessageDialog(null, "No hay alumnos en el registro con la nota solicitada", "Dialog",
+						        JOptionPane.ERROR_MESSAGE);
+					} else {
+						lista.setModel(alumnosEncontrados);
+						scrollLista = new JScrollPane(lista);
+						scrollLista.setBounds(20, 120, 220, 80);				
+						add(scrollLista, BorderLayout.SOUTH);
+					}
+					
 				}catch(NumberFormatException e1) {					
 					JOptionPane.showMessageDialog(null, "Ingrese una nota valida", "Dialog",
 					        JOptionPane.ERROR_MESSAGE);
 				}catch(InvalidGradeException  e2) {
 					JOptionPane.showMessageDialog(null, "Ingrese una nota valida", "Dialog",
-					        JOptionPane.ERROR_MESSAGE);
-				}catch(EmptyListException e3) {
-					JOptionPane.showMessageDialog(null, "No hay alumnos en el registro con la nota solicitada", "Dialog",
 					        JOptionPane.ERROR_MESSAGE);
 				}
 				

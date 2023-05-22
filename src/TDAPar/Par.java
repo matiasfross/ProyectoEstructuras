@@ -7,7 +7,7 @@ package TDAPar;
  * @param <A>Tipo de dato del primer elemento
  * @param <B>Tipo de dato del segundo elemento
  */
-public class Par<A , B> {
+public class Par<A , B> implements Pair<A , B>{
 	
 	//Atributos de instancia
 	
@@ -64,18 +64,12 @@ public class Par<A , B> {
 	
 	//Consultas
 	
-	/**
-	 * Devuelve el primer elemento
-	 * @return Primer elemento
-	 */
+	@Override
 	public A getFirst() {
 		return elem1;
 	}
 	
-	/**
-	 * Devuelve el segundo elemento
-	 * @return Segundo elemento
-	 */
+	@Override
 	public B getSecond() {
 		return elem2;
 	}

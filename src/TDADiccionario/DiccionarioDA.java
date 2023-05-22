@@ -49,7 +49,7 @@ public class DiccionarioDA<K, V> implements Dictionary<K , V> {
 	 * Crea un nuevo diccionario
 	 */
 	public DiccionarioDA() {
-		this(3);
+		this(101);
 	}
 	
 	@Override

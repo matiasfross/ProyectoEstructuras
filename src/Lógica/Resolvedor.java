@@ -3,6 +3,7 @@ package Lógica;
 import TDALista.PositionList;
 
 import TDALista.ListaDE;
+import TDAPar.Pair;
 import TDAPar.Par;
 
 import java.util.Iterator;
@@ -12,6 +13,7 @@ import javax.swing.JPanel;
 
 import Auxiliares.Entry;
 import Auxiliares.Position;
+import Auxiliares.Entrada;
 import Excepciones.EmptyListException;
 import Excepciones.EmptyPriorityQueueException;
 import Excepciones.InvalidGradeException;
@@ -168,23 +170,19 @@ public class Resolvedor {
 		return encontre;
 	}
 	
-	/**
-	 * Mediante un iterador agrega todos los alumnos del registro a un modelo de lista grafica
-	 * @return modelo de lista grafica a mostrar en pantalla
-	 * @throws EmptyListException 
-	 */
-	public DefaultListModel<String> mostrarTodos() throws EmptyListException {
-		DefaultListModel<String> res = new DefaultListModel<String>();
-		Iterator<Par<Integer , Integer>> it = registroLista.iterator();
-		while(it.hasNext()) {
-			Par<Integer , Integer> p = it.next();
-			res.addElement(p.getFirst()+": "+p.getSecond());
 
+	/**
+	 * Devuelve un iterable con todos los pares LU - Nota del registro
+	 * El primer elemento del par representa el LU y el segundo la nota del alumno
+	 * @return Iterable con todos los alumnos
+	 */
+	public Iterable<Pair<Integer , Integer>> mostrarTodos(){
+		PositionList<Pair<Integer , Integer>> res = new ListaDE<Pair<Integer , Integer>>();
+		for (Pair<Integer, Integer> alumno : registroLista) {
+			res.addLast(alumno);
 		}
-		if(res.isEmpty())throw new EmptyListException("No hay alumnos en el registro");
 		return res;
 	}
-
 	
 	/**
 	 * Calcula el promedio de las notas de los alumnos en el registro
@@ -203,41 +201,38 @@ public class Resolvedor {
 		}
 		return (float)totalNotas / totalAlumnos;
 	}
-
+	
 	/**
-	 * 	Construye un modelo de lista en el que mediante un iterador agrega los alumnos cuya nota esta aprobada
-	 * @return modelo de lista que contiene los alumnos aprobados
-	 * @throws EmptyListException Si no hay alumnos aprobados en el registro
+	 * Devuelve un iterable con los datos de los alumnos aprobados
+	 * El primer elemento del par representa el LU y el segundo la nota del alumno
+	 * @return Iterable con datos de alumnos aprobados
 	 */
-	public DefaultListModel<String> mostrarAprobados()throws EmptyListException{		
-		DefaultListModel<String> res = new DefaultListModel<String>();
-		Iterator<Par<Integer , Integer>> it = registroLista.iterator();
-		while(it.hasNext()) {
-			Par<Integer , Integer> p = it.next();
-			if (p.getSecond() >= NOTA_APROBACION) {
-				res.addElement(p.getFirst()+": "+p.getSecond());
-			}			
-		}
-		if(res.isEmpty())throw new EmptyListException("No hay alumnos aprobados en el registro");
-		return res;
-	}
-	/**
-	 * Construye un modelo de lista en el que mediante un iterador agrega los alumnos cuya nota esta desaprobada
-	 * @return modelo de lista que contiene  los alumnos desaprobado
-	 * @throws EmptyListException Si no hay alumnos desaprobados en el registro
-	 */
-	public DefaultListModel<String> mostrarDesaprobados()throws EmptyListException{		
-		DefaultListModel<String> res = new DefaultListModel<String>();
-		Iterator<Par<Integer , Integer>> it = registroLista.iterator();
-		while(it.hasNext()) {
-			Par<Integer , Integer> p = it.next();
-			if (p.getSecond() < NOTA_APROBACION) {
-				res.addElement(p.getFirst()+": "+p.getSecond());
+	public Iterable<Pair<Integer , Integer>> mostrarAprobados(){
+		PositionList<Pair<Integer , Integer>> res = new ListaDE<Pair<Integer , Integer>>();
+		for (Par<Integer , Integer> alumno : registroLista) {
+			if (alumno.getSecond() >= NOTA_APROBACION) {
+				res.addLast(alumno);
 			}
 		}
-		if(res.isEmpty())throw new EmptyListException("No hay alumnos desaprobados en el registro");
 		return res;
 	}
+	
+	/**
+	 * Devuelve un iterable con los datos de los alumnos desaprobados
+	 * El primer elemento del par representa el LU y el segundo la nota del alumno
+	 * @return Iterable con datos de alumnos desaprobados
+	 */
+	public Iterable<Pair<Integer , Integer>> mostrarDesaprobados(){		
+		PositionList<Pair<Integer , Integer>> res = new ListaDE<Pair<Integer , Integer>>();
+		for (Par<Integer , Integer> alumno : registroLista) {
+			if (alumno.getSecond() < NOTA_APROBACION) {
+				res.addLast(alumno);
+			}
+		}
+		return res;
+	}
+	
+	
 	/**
 	 * Retorna la mínima nota en el registro buscándola con una cola con prioridad.
 	 * Si no hay alumnos en el registro , retorna -1.
@@ -263,34 +258,31 @@ public class Resolvedor {
 		return res;
 		
 	}
+	
 	/**
-	 * Mediante un iterador mueve las notas del registro desde una lista a una cola con prioridad.
-	 * Desde la cola con prioridad, remueve el minimo para agregarlo al modelo de lista grafica de forma descentente
-	 * @return Modelo de lista segun la nota de los alumnos de forma descendente
-	 * @throws EmptyListException Si no hay alumnos en el registro
+	 * Devuelve un iterable con los datos de los alumnos ordenados según la nota de mayor a menor
+	 * El primer elemento del par representa el LU y el segundo la nota del alumno
+	 * @return Iterable con los alumnos ordenados
 	 */
-	public DefaultListModel<String> construirDescendente() throws EmptyListException {
+	public Iterable<Pair<Integer , Integer>> construirDescendente() {
 		
-		PriorityQueue<Integer , Integer> ccpNotas = new CCPConHeap<Integer , Integer>(new DecreasingComparator<Integer>());
-		DefaultListModel<String> res = new DefaultListModel<String>();
-		Iterator<Par<Integer , Integer>> it = registroLista.iterator();
-		while(it.hasNext()) {
-			Par<Integer , Integer> p = it.next();
+		PriorityQueue<Integer , Pair<Integer , Integer>> ccpNotas = new CCPConHeap<Integer , Pair<Integer , Integer>>(new DecreasingComparator<Integer>());
+		PositionList<Pair<Integer , Integer>> res = new ListaDE<Pair<Integer , Integer>>();
+	
+		for(Pair<Integer , Integer> alumno : registroLista) {
 			try {
-				ccpNotas.insert(p.getSecond() , p.getFirst());
+				ccpNotas.insert(alumno.getSecond() , alumno);
 			} catch (InvalidKeyException e) {
 				e.printStackTrace();
 			}
 		}
 		try {
 			while(!ccpNotas.isEmpty()) {
-				Entry<Integer , Integer> alum = ccpNotas.removeMin();
-				res.addElement(alum.getValue() + ": " +alum.getKey() );
+				res.addLast(ccpNotas.removeMin().getValue());
 			}
 		} catch (EmptyPriorityQueueException e) {
 			e.printStackTrace();
 		}
-		if(res.isEmpty())throw new EmptyListException("No hay alumnos en el registro");
 		return res;
 	}
 	
@@ -316,38 +308,34 @@ public class Resolvedor {
 	private boolean esNota(int n) {
 		return n >= 0 && n <= 10;
 	}
+	
 	/**
-	 * Mediante un iterador de la lista de registro de alumnos, cosntruye un diccionario que guarda las notas como clave y el lu como valor
-	 * Luego busca todos los alumnos con la nota pasada por parametro y los agrega a un modelo de lista grafica 
-	 * @param text Nota a consultar
-	 * @return Modelo de lista grafica que contiene los alumnos con la nota pasada por parametro
-	 * @throws InvalidGradeException Si la nota pasada por parametro no es valida
-	 * @throws EmptyListException Si no hay alumnos con la nota solicitada en el registro
+	 * Devuelve un iterable con los datos de los alumnos con la nota buscada
+	 * El primer elemento del par representa el LU y el segundo la nota del alumno
+	 * @param text Nota dada
+	 * @return Iterable con los alumnos buscado
+	 * @throws InvalidGradeException si la nota pasada por parámetro no es válida
+	 * @throws NumberFormatException si la cadena no representa un número
 	 */
-	public DefaultListModel<String> buscarDeterminada(String text) throws InvalidGradeException, EmptyListException {
-		
-		
+	public Iterable<Pair<Integer , Integer>> buscarDeterminada(String text) throws InvalidGradeException , NumberFormatException{
 		int n = toNum(text);
 		if(!esNota(n))throw new InvalidGradeException("La nota pasada por párametro no es válida");
-		Dictionary<Integer , Integer> registroNotas = new DiccionarioDA<Integer , Integer>();
-		DefaultListModel<String> res = new DefaultListModel<String>();
-		Iterator<Par<Integer , Integer>> it = registroLista.iterator();
-		while(it.hasNext()) {
-			Par<Integer , Integer> p = it.next();
+		Dictionary<Integer , Pair<Integer , Integer>> registroNotas = new DiccionarioDA<Integer , Pair<Integer , Integer>>();
+		PositionList<Pair<Integer , Integer>> res = new ListaDE<Pair<Integer , Integer>>();
+		for(Pair<Integer , Integer> alumno : registroLista) {
 			try {
-				registroNotas.insert(p.getSecond() , p.getFirst());
+				registroNotas.insert(alumno.getSecond() , alumno);
 			} catch (InvalidKeyException e) {
 				e.printStackTrace();
 			}
 		}
 		try {
-			for (Entry< Integer , Integer> alumno : registroNotas.findAll(n)) {
-				res.addElement(alumno.getValue().toString());
+			for (Entry< Integer , Pair<Integer , Integer>> alumno : registroNotas.findAll(n)) {
+				res.addLast(alumno.getValue());
 			}
 		} catch (InvalidKeyException e) {
 			e.printStackTrace();
 		}
-		if(res.isEmpty())throw new EmptyListException("No hay alumnos con la nota solicitada en el registro");
 		return res;
 	}
 	
