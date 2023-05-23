@@ -6,6 +6,9 @@ import Lógica.Resolvedor;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import Excepciones.InvalidLUException;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -46,6 +49,9 @@ public class ConsultarAlumno extends JPanel {
 					}
 				}catch (NumberFormatException e1) {
 					JOptionPane.showMessageDialog(null, "El LU ingresado no es un número", "Dialog",
+					        JOptionPane.ERROR_MESSAGE);
+				} catch (InvalidLUException e1) {
+					JOptionPane.showMessageDialog(null, "El LU dado no es válido", "Dialog",
 					        JOptionPane.ERROR_MESSAGE);
 				}
 			}

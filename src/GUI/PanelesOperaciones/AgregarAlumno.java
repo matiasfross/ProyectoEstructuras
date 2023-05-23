@@ -12,6 +12,7 @@ import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
 
 import Excepciones.InvalidGradeException;
+import Excepciones.InvalidLUException;
 import Lógica.Resolvedor;
 import TDALista.PositionList;
 import TDAPar.Par;
@@ -55,6 +56,9 @@ public class AgregarAlumno extends JPanel {
 					        JOptionPane.ERROR_MESSAGE);
 				} catch (InvalidGradeException e1) {
 					JOptionPane.showMessageDialog(null, "La nota no es válida", "Dialog",
+					        JOptionPane.ERROR_MESSAGE);
+				} catch (InvalidLUException e1) {
+					JOptionPane.showMessageDialog(null, "El LU dado no es válido", "Dialog",
 					        JOptionPane.ERROR_MESSAGE);
 				}
 				

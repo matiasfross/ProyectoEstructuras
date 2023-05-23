@@ -5,6 +5,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import Excepciones.InvalidLUException;
 import Lógica.Resolvedor;
 
 import javax.swing.JButton;
@@ -46,6 +47,9 @@ public class EliminarAlumno extends JPanel {
 					}
 				} catch (NumberFormatException e1) {
 					JOptionPane.showMessageDialog(null, "El LU dado no es un número", "Dialog",
+					        JOptionPane.ERROR_MESSAGE);
+				} catch (InvalidLUException e1) {
+					JOptionPane.showMessageDialog(null, "El LU dado no es válido", "Dialog",
 					        JOptionPane.ERROR_MESSAGE);
 				}
 			}

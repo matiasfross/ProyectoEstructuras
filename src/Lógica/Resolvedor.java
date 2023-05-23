@@ -19,6 +19,7 @@ import Excepciones.EmptyPriorityQueueException;
 import Excepciones.InvalidGradeException;
 import Excepciones.InvalidKeyException;
 import Excepciones.InvalidPositionException;
+import Excepciones.InvalidLUException;
 import GUI.PanelesOperaciones.AgregarAlumno;
 import GUI.PanelesOperaciones.ConsultarAlumno;
 import GUI.PanelesOperaciones.EliminarAlumno;
@@ -104,10 +105,14 @@ public class Resolvedor {
 	 * @return retorna -1 si no estaba en el registro, o la nota anterior si ya estaba registrado anteriormente
 	 * @throws InvalidGradeException  si la nota nota pasada por paramentro no es valida
 	 * @throws NumberFormatException si la nota pasada por parametro no es un numero
+	 * @throws InvalidLUException si el LU dado no corresponde a un LU válido
 	 */
-	public int agregarAlumno(String LU, String nota) throws InvalidGradeException , NumberFormatException{
+	public int agregarAlumno(String LU, String nota) throws InvalidLUException , InvalidGradeException , NumberFormatException{
 		int lu = toNum(LU);
 		int n = toNum(nota);
+		if (!esLU(lu)) {
+			throw new InvalidLUException("El LU no es válido");
+		}
 		if (!esNota(n)) {
 			throw new InvalidGradeException("La nota pasada por párametro no es válida");
 		}
@@ -131,9 +136,13 @@ public class Resolvedor {
 	 * @param LU numero de legajo del alumno a a consultar
 	 * @return nota asociada al alumno con el LU pasado por parametro
 	 * @throws NumberFormatException si el LU pasado por parametro no representa un numero
+	 * @throws InvalidLUException si el LU dado no corresponde a un LU válido
 	 */
-	public int consultarNota(String LU)throws NumberFormatException {
+	public int consultarNota(String LU)throws NumberFormatException , InvalidLUException {
 		int lu = toNum(LU);
+		if (!esLU(lu)) {
+			throw new InvalidLUException("El LU no es válido");
+		}
 		Iterator<Par<Integer , Integer>> it = registroLista.iterator();
 		int res = -1;
 		while (it.hasNext() && res == -1) {
@@ -150,9 +159,13 @@ public class Resolvedor {
 	 * @param LU numero de legajo del alumno a eliminar
 	 * @return retorna verdadero si encontro al alumno asociado a LU en el registro, falso en caso contrario
 	 * @throws NumberFormatException si el LU pasado por parametro no representa a un numero
+	 * @throws InvalidLUException si el valor de LU dado no representa un LU válido
 	 */
-	public boolean eliminarNota(String LU)throws NumberFormatException{
+	public boolean eliminarNota(String LU)throws NumberFormatException , InvalidLUException{
 		int lu = toNum(LU);
+		if (!esLU(lu)) {
+			throw new InvalidLUException("El LU no es válido");
+		}
 		Iterator<Position<Par<Integer , Integer>>> it = registroLista.positions().iterator();
 		boolean encontre = false;
 		while (it.hasNext() && !encontre) {
@@ -309,6 +322,14 @@ public class Resolvedor {
 		return n >= 0 && n <= 10;
 	}
 	
+	/**
+	 * Controla si n es válido como LU
+	 * @param n LU a controlar
+	 * @return Verdadero si es válido
+	 */
+	private boolean esLU(int n) {
+		return n > 0;
+	}
 	/**
 	 * Devuelve un iterable con los datos de los alumnos con la nota buscada
 	 * El primer elemento del par representa el LU y el segundo la nota del alumno
