@@ -8,10 +8,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import Excepciones.EmptyListException;
 import Lógica.Resolvedor;
 import TDAPar.Pair;
-import TDAPar.Par;
 /**
  * Panel que muestra una lista con todos los alumnos desaprobados
  * Muestra un mensaje de error si no hay alumnos desaprobados en el registro

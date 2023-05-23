@@ -7,14 +7,10 @@ import TDAPar.Pair;
 import TDAPar.Par;
 
 import java.util.Iterator;
-
-import javax.swing.DefaultListModel;
 import javax.swing.JPanel;
 
 import Auxiliares.Entry;
 import Auxiliares.Position;
-import Auxiliares.Entrada;
-import Excepciones.EmptyListException;
 import Excepciones.EmptyPriorityQueueException;
 import Excepciones.InvalidGradeException;
 import Excepciones.InvalidKeyException;
@@ -38,7 +34,7 @@ import TDAColaCP.DefaultComparator;
 import TDAColaCP.DecreasingComparator;
 /**
  * Clase que recibe que funcionalidad se desea llevar a cabo y que resulve las operaciones logicas de las mismas
- * tiene un atributo que lleva el registro de los alumnos
+ * tiene un atributo que lleva el registro de los alumnos y otro que almacena el nombre de la materia de la que se lleva registro
  * @author valua
  *
  */
@@ -48,6 +44,7 @@ public class Resolvedor {
 	//Atributos de instancia
 	
 	private PositionList<Par<Integer , Integer>> registroLista;
+	private String materia;
 	private static final int NOTA_APROBACION = 6;
 	//Constructor
 	
@@ -56,48 +53,9 @@ public class Resolvedor {
 	 */
 	public Resolvedor() {
 		registroLista = new ListaDE<Par<Integer , Integer>>();
+		materia = null;
 	}
-	/**
-	 * Crea un panel de acuerdo a la funcion que se quiera utilizar
-	 * @param n referencia a la opcion elegida en la caja de opciones
-	 * @return retorna un panel que realiza la funcion solicitada
-	 */
-	public JPanel crearPanelFunción(int n) {
-		JPanel res = null;
-		switch(n) {
-			case 0:
-				res = new AgregarAlumno(this);
-				break;
-			case 1:
-				res = new ConsultarAlumno(this);
-				break;
-			case 2:
-				res = new EliminarAlumno(this);
-				break;
-			case 3:
-				res = new MostrarTodos(this);
-				break;
-			case 4:
-				res = new CalcularPromedio(this);
-				break;
-			case 5:
-				res = new NotaMinima(this);
-				break;
-			case 6:
-				res = new MostrarDescendente(this);
-				break;
-			case 7:
-				res = new MostrarDeterminadaNota(this);
-				break;
-			case 8:
-				res = new MostrarAprobados(this);
-				break;
-			case 9:
-				res = new MostrarDesaprobados(this);
-				break;
-		}
-		return res;
-	}
+
 	/**
 	 * Agrega un alumno al registro
 	 * @param LU numero de legajo que identifica al alumno
@@ -360,5 +318,26 @@ public class Resolvedor {
 		return res;
 	}
 	
+	/**
+	 * Determinar un nuevo nombre de materia
+	 * @param materia Nombre de la materia
+	 */
+	public void setMateria(String materia) {
+		this.materia = materia;
+	}
 	
+	/**
+	 * Devuelve el nombre de la materia
+	 * @return
+	 */
+	public String getMateria() {
+		return materia;
+	}
+	
+	/**
+	 * Elimina todos los alumnos del registro
+	 */
+	public void reiniciarRegistro() {
+		registroLista = new ListaDE<Par<Integer , Integer>>();
+	}
 }

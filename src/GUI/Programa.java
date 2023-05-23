@@ -5,17 +5,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
-import TDALista.ListaDE;
-import TDALista.PositionList;
-import TDAPar.Par;
-import javax.swing.JScrollPane;  
+import Lógica.Resolvedor;
+
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.CardLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -34,7 +28,7 @@ public class Programa {
 	private JLabel subjectLabel;
 	private JButton enterButton , backButton;
 	private JPanel panelInicio , funcionalidades;
-	private String materia;
+	private Resolvedor resolvedor;
 	
 	/**
 	 * Launch the application.
@@ -67,11 +61,19 @@ public class Programa {
 		frame.setBounds(450, 450, 700, 450);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		
+		iniciarResolvedor();
 		armarPanelInicio();
 		armarBotonRetorno();
 		armarPanelFuncionalidades();
 	}
+	
+	/**
+	 * Crea un nuevo resolvedor que se encarga de la lógica del programa y guarda como atributo
+	 */
+	private void iniciarResolvedor() {
+		resolvedor = new Resolvedor();
+	}
+
 	/**
 	 * Inicializa los contenidos del frame
 	 */
@@ -92,7 +94,7 @@ public class Programa {
 		enterButton.setBounds(171, 192, 104, 28);
 		enterButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				materia = jaulaTxtMateria.getText();
+				resolvedor.setMateria(jaulaTxtMateria.getText());
 				mostrarPanelFuncionalidades();
 			}
 		});		
@@ -106,7 +108,7 @@ public class Programa {
 	 */
 	private void armarPanelFuncionalidades() {
 
-		funcionalidades = new PanelFuncionalidades();
+		funcionalidades = new PanelFuncionalidades(resolvedor);
 		funcionalidades.setVisible(false);
 		frame.getContentPane().add(funcionalidades , BorderLayout.NORTH);
 		
@@ -130,7 +132,6 @@ public class Programa {
 	 * Hace visible al panel de funcionalidades y al boton de registro de nueva materia luego de asignar sobre que materia se llevara un registro de notas
 	 */
 	private void mostrarPanelFuncionalidades() {
-		frame.setTitle(materia);
 		panelInicio.setVisible(false);
 		funcionalidades.setVisible(true);
 		backButton.setVisible(true);
@@ -141,11 +142,8 @@ public class Programa {
 	 * Hace visible el panel de inicio luego de presionar el  boton de registro de una nueva materia, esconde el boton presionado y borra el panel de funcionalidades viejo para crear uno nuevo
 	 */
 	private void volverAPanelInicio() {
-		frame.setTitle("Registro de notas");
 		panelInicio.setVisible(true);
 		backButton.setVisible(false);
-		frame.getContentPane().remove(funcionalidades);
-		armarPanelFuncionalidades();
-
+		funcionalidades.setVisible(false);
 	}
 }

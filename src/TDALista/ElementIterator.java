@@ -2,7 +2,6 @@ package TDALista;
 
 import java.util.Iterator;
 
-import TDALista.PositionList;
 import java.util.NoSuchElementException;
 
 import Auxiliares.Position;

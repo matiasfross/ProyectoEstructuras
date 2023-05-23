@@ -6,17 +6,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.JFrame;
-
-import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
 
 import Excepciones.InvalidGradeException;
 import Excepciones.InvalidLUException;
 import Lógica.Resolvedor;
-import TDALista.PositionList;
-import TDAPar.Par;
-
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
